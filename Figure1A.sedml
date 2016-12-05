@@ -38,7 +38,7 @@
     <listOfDataGenerators>
         <dataGenerator id="xDataGenerator1_1">
             <listOfVariables>
-                <variable id="xVariable1_1" target="/cellml:model/cellml:component[@name='figure_1_A']/cellml:variable[@name='mV']" taskReference="repeatedTask"/>
+                <variable id="xVariable1_1" target="/cellml:model/cellml:component[@name='figure_1_A']/cellml:variable[@name='V']" taskReference="repeatedTask"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci> xVariable1_1 </ci>
