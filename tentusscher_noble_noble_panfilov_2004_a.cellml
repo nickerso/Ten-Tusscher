@@ -2602,6 +2602,76 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_3D">
+        <variable initial_value="-80" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="tau_s" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>tau_s</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="millisecond">85</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <power/>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">45</cn>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">2</cn>
+                                    </apply>
+                                </apply>
+                                <cn cellml:units="millivolt_square">320</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
+                        <cn cellml:units="millisecond">5</cn>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <minus/>
+                                        <ci>V</ci>
+                                        <cn cellml:units="millivolt">20</cn>
+                                    </apply>
+                                    <cn cellml:units="millivolt">5</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <cn cellml:units="millisecond">3</cn>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00021" name="transient_outward_current_r_gate">
         <variable initial_value="0" name="r" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
