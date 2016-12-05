@@ -1084,6 +1084,92 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="figure_1_B">
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="h_inf" units="dimensionless"/>
+        <variable name="j_inf" units="dimensionless"/>
+        <variable name="hj_inf" units="dimensionless"/>
+        <variable initial_value="-120" name="mV" units="millivolt"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>h_inf</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <power/>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <plus/>
+                                        <ci>mV</ci>
+                                        <cn cellml:units="millivolt">71.55</cn>
+                                    </apply>
+                                    <cn cellml:units="millivolt">7.43</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>j_inf</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <power/>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <plus/>
+                                        <ci>mV</ci>
+                                        <cn cellml:units="millivolt">71.55</cn>
+                                    </apply>
+                                    <cn cellml:units="millivolt">7.43</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <cn cellml:units="dimensionless">2</cn>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>hj_inf</ci>
+                <apply>
+                    <times/>
+                    <ci>h_inf</ci>
+                    <ci>j_inf</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>mV</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component name="fast_sodium_current_h_gate">
         <variable initial_value="0.75" name="h" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
@@ -3165,7 +3251,6 @@ http://www.CellML.org/
             <component_ref component="fast_sodium_current_m_gate"/>
             <component_ref component="fast_sodium_current_h_gate"/>
             <component_ref component="fast_sodium_current_j_gate"/>
-            <component_ref component="figure_1_A"/>
         </component_ref>
         <component_ref component="L_type_Ca_current">
             <component_ref component="L_type_Ca_current_d_gate"/>
@@ -3480,10 +3565,6 @@ http://www.CellML.org/
         <map_variables variable_1="j" variable_2="j"/>
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="V" variable_2="V"/>
-    </connection>
-    <connection>
-        <map_components component_1="fast_sodium_current" component_2="figure_1_A"/>
-        <map_variables variable_1="time" variable_2="time"/>
     </connection>
     <connection>
         <map_components component_1="L_type_Ca_current" component_2="L_type_Ca_current_d_gate"/>
