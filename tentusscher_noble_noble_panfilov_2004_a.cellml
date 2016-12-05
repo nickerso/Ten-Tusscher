@@ -2087,6 +2087,76 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_2E">
+        <variable initial_value="-100" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="tau_f" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>tau_f</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="millisecond">1125</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <power/>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">27</cn>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">2</cn>
+                                    </apply>
+                                </apply>
+                                <cn cellml:units="millivolt_square">240</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <cn cellml:units="millisecond">80</cn>
+                    <apply>
+                        <divide/>
+                        <cn cellml:units="millisecond">165</cn>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <minus/>
+                                        <cn cellml:units="millivolt">25</cn>
+                                        <ci>V</ci>
+                                    </apply>
+                                    <cn cellml:units="millivolt">10</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00017" name="L_type_Ca_current_fCa_gate">
         <variable initial_value="1" name="fCa" public_interface="out" units="dimensionless"/>
         <variable name="Ca_i" public_interface="in" units="millimolar"/>
