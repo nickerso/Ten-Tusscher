@@ -1419,6 +1419,212 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="figure_1_E">
+        <variable initial_value="-120" name="V" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="alpha_j" units="per_millisecond"/>
+        <variable name="beta_j" units="per_millisecond"/>
+        <variable name="tau_j" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>alpha_j</ci>
+                <piecewise>
+                    <piece>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <times/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <times/>
+                                            <apply>
+                                                <minus/>
+                                                <cn cellml:units="per_millisecond">25428</cn>
+                                            </apply>
+                                            <apply>
+                                                <exp/>
+                                                <apply>
+                                                    <times/>
+                                                    <cn cellml:units="per_millivolt">0.2444</cn>
+                                                    <ci>V</ci>
+                                                </apply>
+                                            </apply>
+                                        </apply>
+                                        <apply>
+                                            <times/>
+                                            <cn cellml:units="per_millisecond" type="e-notation">6.948<sep/>-6</cn>
+                                            <apply>
+                                                <exp/>
+                                                <apply>
+                                                    <times/>
+                                                    <apply>
+                                                        <minus/>
+                                                        <cn cellml:units="per_millivolt">0.04391</cn>
+                                                    </apply>
+                                                    <ci>V</ci>
+                                                </apply>
+                                            </apply>
+                                        </apply>
+                                    </apply>
+                                    <apply>
+                                        <plus/>
+                                        <ci>V</ci>
+                                        <cn cellml:units="millivolt">37.78</cn>
+                                    </apply>
+                                </apply>
+                                <cn cellml:units="millivolt">1</cn>
+                            </apply>
+                            <apply>
+                                <plus/>
+                                <cn cellml:units="dimensionless">1</cn>
+                                <apply>
+                                    <exp/>
+                                    <apply>
+                                        <times/>
+                                        <cn cellml:units="per_millivolt">0.311</cn>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">79.23</cn>
+                                        </apply>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <lt/>
+                            <ci>V</ci>
+                            <apply>
+                                <minus/>
+                                <cn cellml:units="millivolt">40</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <cn cellml:units="per_millisecond">0</cn>
+                    </otherwise>
+                </piecewise>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>beta_j</ci>
+                <piecewise>
+                    <piece>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <cn cellml:units="per_millisecond">0.02424</cn>
+                                <apply>
+                                    <exp/>
+                                    <apply>
+                                        <times/>
+                                        <apply>
+                                            <minus/>
+                                            <cn cellml:units="per_millivolt">0.01052</cn>
+                                        </apply>
+                                        <ci>V</ci>
+                                    </apply>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <plus/>
+                                <cn cellml:units="dimensionless">1</cn>
+                                <apply>
+                                    <exp/>
+                                    <apply>
+                                        <times/>
+                                        <apply>
+                                            <minus/>
+                                            <cn cellml:units="per_millivolt">0.1378</cn>
+                                        </apply>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">40.14</cn>
+                                        </apply>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <lt/>
+                            <ci>V</ci>
+                            <apply>
+                                <minus/>
+                                <cn cellml:units="millivolt">40</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <cn cellml:units="per_millisecond">0.6</cn>
+                                <apply>
+                                    <exp/>
+                                    <apply>
+                                        <times/>
+                                        <cn cellml:units="per_millivolt">0.057</cn>
+                                        <ci>V</ci>
+                                    </apply>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <plus/>
+                                <cn cellml:units="dimensionless">1</cn>
+                                <apply>
+                                    <exp/>
+                                    <apply>
+                                        <times/>
+                                        <apply>
+                                            <minus/>
+                                            <cn cellml:units="per_millivolt">0.1</cn>
+                                        </apply>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">32</cn>
+                                        </apply>
+                                    </apply>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </otherwise>
+                </piecewise>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>tau_j</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <plus/>
+                        <ci>alpha_j</ci>
+                        <ci>beta_j</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component name="fast_sodium_current_h_gate">
         <variable initial_value="0.75" name="h" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
