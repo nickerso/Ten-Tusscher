@@ -1779,7 +1779,7 @@ http://www.CellML.org/
         </math>
     </component>
     <component name="Figure_2A">
-        <variable initial_value="-60" name="mV" public_interface="out" units="millivolt"/>
+        <variable initial_value="-60" name="V" public_interface="out" units="millivolt"/>
         <variable name="time" public_interface="in" units="millisecond"/>
         <variable name="d_inf" units="dimensionless"/>
         <variable initial_value="1" name="initial" units="dimensionless"/>
@@ -1803,7 +1803,7 @@ http://www.CellML.org/
                                         <minus/>
                                         <cn cellml:units="millivolt">5</cn>
                                     </apply>
-                                    <ci>mV</ci>
+                                    <ci>V</ci>
                                 </apply>
                                 <cn cellml:units="millivolt">7.5</cn>
                             </apply>
@@ -1818,7 +1818,7 @@ http://www.CellML.org/
                     <bvar>
                         <ci>time</ci>
                     </bvar>
-                    <ci>mV</ci>
+                    <ci>V</ci>
                 </apply>
                 <ci>initial</ci>
             </apply>
@@ -1924,6 +1924,50 @@ http://www.CellML.org/
                     </apply>
                     <ci>tau_f</ci>
                 </apply>
+            </apply>
+        </math>
+    </component>
+    <component name="Figure_2B">
+        <variable initial_value="-80" name="V" public_interface="out" units="millivolt"/>
+        <variable initial_value="1" name="f" public_interface="out" units="dimensionless"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="f_inf" units="dimensionless"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>f_inf</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">20</cn>
+                                </apply>
+                                <cn cellml:units="millivolt">7</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
             </apply>
         </math>
     </component>
