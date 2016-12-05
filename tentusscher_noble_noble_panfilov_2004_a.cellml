@@ -2728,6 +2728,56 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_3C">
+        <variable initial_value="-100" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="tau_r" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>tau_r</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="millisecond">9.5</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <power/>
+                                        <apply>
+                                            <plus/>
+                                            <ci>V</ci>
+                                            <cn cellml:units="millivolt">40</cn>
+                                        </apply>
+                                        <cn cellml:units="dimensionless">2</cn>
+                                    </apply>
+                                </apply>
+                                <cn cellml:units="millivolt_square">1800</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <cn cellml:units="millisecond">0.8</cn>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00022" name="sodium_potassium_pump_current">
         <variable cmeta:id="sodium_potassium_pump_current_i_NaK" name="i_NaK" public_interface="out" units="picoA_per_picoF"/>
         <variable initial_value="1.362" name="P_NaK" units="picoA_per_picoF"/>
