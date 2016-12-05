@@ -617,6 +617,88 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="figure_6_C">
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="tau_xr2" units="millisecond"/>
+        <variable initial_value="-100" name="V" units="millivolt"/>
+        <variable name="alpha_xr2" units="dimensionless"/>
+        <variable name="beta_xr2" units="dimensionless"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>alpha_xr2</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">3</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <cn cellml:units="millivolt">60</cn>
+                                    </apply>
+                                    <ci>V</ci>
+                                </apply>
+                                <cn cellml:units="millivolt">20</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>beta_xr2</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1.12</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">60</cn>
+                                </apply>
+                                <cn cellml:units="millivolt">20</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>tau_xr2</ci>
+                <apply>
+                    <times/>
+                    <cn cellml:units="millisecond">1</cn>
+                    <ci>alpha_xr2</ci>
+                    <ci>beta_xr2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component name="rapid_time_dependent_potassium_current_Xr1_gate">
         <variable initial_value="0" name="Xr1" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
