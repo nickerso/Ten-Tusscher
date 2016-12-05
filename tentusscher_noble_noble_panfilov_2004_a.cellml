@@ -1824,6 +1824,122 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_2D">
+        <variable initial_value="0" name="d" public_interface="out" units="dimensionless"/>
+        <variable initial_value="-80" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="alpha_d" units="dimensionless"/>
+        <variable name="beta_d" units="dimensionless"/>
+        <variable name="gamma_d" units="millisecond"/>
+        <variable name="tau_d" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>alpha_d</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <divide/>
+                        <cn cellml:units="dimensionless">1.4</cn>
+                        <apply>
+                            <plus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <apply>
+                                <exp/>
+                                <apply>
+                                    <divide/>
+                                    <apply>
+                                        <minus/>
+                                        <apply>
+                                            <minus/>
+                                            <cn cellml:units="millivolt">35</cn>
+                                        </apply>
+                                        <ci>V</ci>
+                                    </apply>
+                                    <cn cellml:units="millivolt">13</cn>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <cn cellml:units="dimensionless">0.25</cn>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>beta_d</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1.4</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">5</cn>
+                                </apply>
+                                <cn cellml:units="millivolt">5</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>gamma_d</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="millisecond">1</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <cn cellml:units="millivolt">50</cn>
+                                    <ci>V</ci>
+                                </apply>
+                                <cn cellml:units="millivolt">20</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>tau_d</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <cn cellml:units="millisecond">1</cn>
+                        <ci>alpha_d</ci>
+                        <ci>beta_d</ci>
+                    </apply>
+                    <ci>gamma_d</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00016" name="L_type_Ca_current_f_gate">
         <variable initial_value="1" name="f" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
