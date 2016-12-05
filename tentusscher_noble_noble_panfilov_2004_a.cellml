@@ -2116,6 +2116,112 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_2C">
+        <variable initial_value="0" name="Ca_i" public_interface="out" units="millimolar"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="alpha_fCa" units="dimensionless"/>
+        <variable name="beta_fCa" units="dimensionless"/>
+        <variable name="gama_fCa" units="dimensionless"/>
+        <variable name="fCa_inf" units="dimensionless"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>alpha_fCa</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <divide/>
+                                <ci>Ca_i</ci>
+                                <cn cellml:units="millimolar">0.000325</cn>
+                            </apply>
+                            <cn cellml:units="dimensionless">8</cn>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>beta_fCa</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">0.1</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <ci>Ca_i</ci>
+                                    <cn cellml:units="millimolar">0.0005</cn>
+                                </apply>
+                                <cn cellml:units="millimolar">0.0001</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>gama_fCa</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">0.2</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <ci>Ca_i</ci>
+                                    <cn cellml:units="millimolar">0.00075</cn>
+                                </apply>
+                                <cn cellml:units="millimolar">0.0008</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>fCa_inf</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <plus/>
+                        <ci>alpha_fCa</ci>
+                        <ci>beta_fCa</ci>
+                        <ci>gama_fCa</ci>
+                        <cn cellml:units="dimensionless">0.23</cn>
+                    </apply>
+                    <cn cellml:units="dimensionless">1.46</cn>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>Ca_i</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00018" name="calcium_background_current">
         <variable cmeta:id="calcium_background_current_i_b_Ca" name="i_b_Ca" public_interface="out" units="picoA_per_picoF"/>
         <variable initial_value="0.000592" name="g_bca" units="nanoS_per_picoF"/>
