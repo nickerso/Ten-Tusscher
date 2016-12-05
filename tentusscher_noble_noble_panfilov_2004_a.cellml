@@ -2642,6 +2642,49 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_3A">
+        <variable initial_value="-80" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="r_inf" units="dimensionless"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>r_inf</ci>
+                <apply>
+                    <divide/>
+                    <cn cellml:units="dimensionless">1</cn>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <minus/>
+                                    <cn cellml:units="millivolt">20</cn>
+                                    <ci>V</ci>
+                                </apply>
+                                <cn cellml:units="millivolt">6</cn>
+                            </apply>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00022" name="sodium_potassium_pump_current">
         <variable cmeta:id="sodium_potassium_pump_current_i_NaK" name="i_NaK" public_interface="out" units="picoA_per_picoF"/>
         <variable initial_value="1.362" name="P_NaK" units="picoA_per_picoF"/>
