@@ -785,6 +785,24 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="Figure_5C">
+        <variable initial_value="-40" name="V" public_interface="out" units="millivolt"/>
+        <variable name="time" units="millisecond"/>
+        <variable initial_value="1" name="initial" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>V</ci>
+                </apply>
+                <ci>initial</ci>
+            </apply>
+        </math>
+    </component>
     <component cmeta:id="id_00008" name="slow_time_dependent_potassium_current_Xs_gate">
         <variable initial_value="0" name="Xs" public_interface="out" units="dimensionless"/>
         <variable name="V" public_interface="in" units="millivolt"/>
