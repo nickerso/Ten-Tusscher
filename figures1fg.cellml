@@ -1,0 +1,103 @@
+<?xml version='1.0'?>
+<model name="figures_1F_1G" xmlns="http://www.cellml.org/cellml/1.1#" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <import xlink:href="tentusscher_noble_noble_panfilov_2004_a.cellml">
+        <component component_ref="fast_sodium_current" name="i_Na"/>
+    </import>
+    <units name="millisecond">
+        <unit prefix="milli" units="second"/>
+    </units>
+    <units name="millivolt">
+        <unit prefix="milli" units="volt"/>
+    </units>
+    <component name="time">
+        <variable name="time" public_interface="out" units="millisecond"/>
+        <variable initial_value="0" name="dummy" units="millivolt"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>dummy</ci>
+                </apply>
+                <cn cellml:units="dimensionless">1</cn>
+            </apply>
+        </math>
+    </component>
+    <component name="protocol">
+        <variable initial_value="-80" name="holding_potential" units="millivolt"/>
+        <variable initial_value="-20" name="stimulus_potential" units="millivolt"/>
+        <variable initial_value="1000" name="interpulse_interval" units="millisecond"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="v" public_interface="out" units="millivolt"/>
+        <variable initial_value="67.0" name="E_Na" public_interface="out" units="millivolt"/>
+        <variable name="i_Na" public_interface="in" units="dimensionless"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v</ci>
+                <piecewise>
+                    <piece>
+                        <ci>stimulus_potential</ci>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <gt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">50</cn>
+                            </apply>
+                            <apply>
+                                <leq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1050</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <ci>stimulus_potential</ci>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <gt/>
+                                <ci>time</ci>
+                                <apply>
+                                    <plus/>
+                                    <cn cellml:units="millisecond">1050</cn>
+                                    <ci>interpulse_interval</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <leq/>
+                                <ci>time</ci>
+                                <apply>
+                                    <plus/>
+                                    <cn cellml:units="millisecond">1080</cn>
+                                    <ci>interpulse_interval</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <ci>holding_potential</ci>
+                    </otherwise>
+                </piecewise>
+            </apply>
+        </math>
+    </component>
+    <connection>
+        <map_components component_1="time" component_2="protocol"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="time" component_2="i_Na"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
+    <connection>
+        <map_components component_1="protocol" component_2="i_Na"/>
+        <map_variables variable_1="v" variable_2="V"/>
+        <map_variables variable_1="E_Na" variable_2="E_Na"/>
+        <map_variables variable_1="i_Na" variable_2="i_Na"/>
+    </connection>
+</model>
