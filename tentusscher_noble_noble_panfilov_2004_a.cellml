@@ -111,10 +111,115 @@ http://www.CellML.org/
         <variable name="i_p_Ca" public_interface="in" units="picoA_per_picoF"/>
         <variable name="i_Stim" public_interface="out" units="picoA_per_picoF"/>
         <variable initial_value="10" name="stim_start" units="millisecond"/>
-        <variable initial_value="1000" name="stim_period" units="millisecond"/>
+        <variable name="stim_period" public_interface="out" units="millisecond"/>
         <variable initial_value="1" name="stim_duration" units="millisecond"/>
         <variable initial_value="52" name="stim_amplitude" units="picoA_per_picoF"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>stim_period</ci>
+                <piecewise>
+                    <piece>
+                        <cn cellml:units="millisecond">4000</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">0</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">600000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="millisecond">2000</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">600000</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1200000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="millisecond">1000</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1200000</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1800000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="millisecond">666.67</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1800000</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">2400000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="millisecond">500</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">2400000</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">3000000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <cn cellml:units="millisecond">400</cn>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <geq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">3000000</cn>
+                            </apply>
+                            <apply>
+                                <lt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">3600000</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <cn cellml:units="millisecond">333.33</cn>
+                    </otherwise>
+                </piecewise>
+            </apply>
             <apply>
                 <eq/>
                 <ci>i_Stim</ci>
