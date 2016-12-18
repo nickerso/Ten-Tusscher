@@ -3834,6 +3834,85 @@ http://www.CellML.org/
             </apply>
         </math>
     </component>
+    <component name="time">
+        <variable name="time" public_interface="out" units="millisecond"/>
+        <variable initial_value="0" name="dummy" units="millivolt"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <apply>
+                    <diff/>
+                    <bvar>
+                        <ci>time</ci>
+                    </bvar>
+                    <ci>dummy</ci>
+                </apply>
+                <cn cellml:units="dimensionless">1</cn>
+            </apply>
+        </math>
+    </component>
+    <component name="protocol">
+        <variable initial_value="-80" name="holding_potential" units="millivolt"/>
+        <variable initial_value="-20" name="stimulus_potential" units="millivolt"/>
+        <variable initial_value="1000" name="interpulse_interval" units="millisecond"/>
+        <variable name="time" public_interface="in" units="millisecond"/>
+        <variable name="v" units="millivolt"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+                <eq/>
+                <ci>v</ci>
+                <piecewise>
+                    <piece>
+                        <ci>stimulus_potential</ci>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <gt/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">50</cn>
+                            </apply>
+                            <apply>
+                                <leq/>
+                                <ci>time</ci>
+                                <cn cellml:units="millisecond">1050</cn>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <piece>
+                        <ci>stimulus_potential</ci>
+                        <apply>
+                            <and/>
+                            <apply>
+                                <gt/>
+                                <ci>time</ci>
+                                <apply>
+                                    <plus/>
+                                    <cn cellml:units="millisecond">1050</cn>
+                                    <ci>interpulse_interval</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <leq/>
+                                <ci>time</ci>
+                                <apply>
+                                    <plus/>
+                                    <cn cellml:units="millisecond">1080</cn>
+                                    <ci>interpulse_interval</ci>
+                                </apply>
+                            </apply>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <ci>holding_potential</ci>
+                    </otherwise>
+                </piecewise>
+            </apply>
+        </math>
+    </component>
+    <connection>
+        <map_components component_1="time" component_2="protocol"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
     <group>
         <relationship_ref relationship="containment"/>
         <component_ref component="membrane">
